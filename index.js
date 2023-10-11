@@ -17,6 +17,24 @@ function getComputerChoice () {
     return computerChoice;
 }
 
+// Create getPlayerChoice that will prompt a user to input their selection
+// of the choices and its compared insensitively to the options then returns the users choice
+// if none of the choices match the user input alert they need to select one of the three
+
+function getPlayerChoice () {
+    let playerChoice = prompt(`Choose your weapon 'Rock', 'Paper', or 'Scissors'?`, '');
+
+    // Compare user input to choices in choice array
+    for (let i = 0; i < choices.length; i++) {
+
+        if(choices[i].toUpperCase() === playerChoice.toUpperCase()) {
+            playerChoice = choices[i];
+            return playerChoice;
+        }
+    }
+
+}
+
 // Create playRound() function that takes two parameters
 // playerSelection and computerSelection
 // compare playerSelection with compterSelection to return either two strings
