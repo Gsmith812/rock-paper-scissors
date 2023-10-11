@@ -51,11 +51,11 @@ function playRound(playerSelection, computerSelection) {
     //conditonals to handle results of round
     //using comparison operators to compare index values of each selection in the choices array
     if (playerChoiceIndex === computerChoiceIndex) {
-        result = `You Tied! You both selected ${playerSelection}`;
+        result = [`You Tied! You both selected ${playerSelection}`, 'Tied'];
     } else if ( ((playerChoiceIndex - 1) === computerChoiceIndex) || (computerChoiceIndex === 2 && playerChoiceIndex === 0) ) {
-        result = `You Won! ${playerSelection} beats ${computerSelection}`;
+        result = [`You Won! ${playerSelection} beats ${computerSelection}`, 'Win'];
     } else {
-        result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+        result = [`You Lose! ${computerSelection} beats ${playerSelection}`, 'Loss'];
     }
 
     // return result
@@ -63,3 +63,38 @@ function playRound(playerSelection, computerSelection) {
     return result;
 }
 
+// Create new function game that calls the playRound function
+// plays 5 rounds of a game and keeps score to record the winner of the 5 rounds
+// display the winner after the five rounds
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    // Create for loop to iterate 5 rounds of the game
+    // Add to the wins and losses for the player
+    // Handle ties by recalling the playRound function
+
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        let roundResult = playRound(playerSelection, computerSelection);
+        
+        console.log(roundResult[0]);
+        
+        if (roundResult[1] === 'Win') {
+            playerScore++
+        } else if (roundResult[1] === 'Loss') {
+            computerScore++
+        } else {
+            i--
+        }
+        console.log(`Player: ${playerScore}`);
+        console.log(`Computer: ${computerScore}`);
+    }
+    if(playerScore > computerScore) {
+        return `Congratulations! You beat the computer ${playerScore} to ${computerScore}`
+    } else {
+        return `Game Over!! You lost to the computer ${computerScore} to ${playerScore}`
+    }
+}
