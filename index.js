@@ -21,19 +21,19 @@ function getComputerChoice () {
 // of the choices and its compared insensitively to the options then returns the users choice
 // if none of the choices match the user input alert they need to select one of the three
 
-function getPlayerChoice () {
-    let playerChoice = prompt(`Choose your weapon 'Rock', 'Paper', or 'Scissors'?`, '');
+// function getPlayerChoice () {
+//     let playerChoice = prompt(`Choose your weapon 'Rock', 'Paper', or 'Scissors'?`, '');
 
-    // Compare user input to choices in choice array
-    for (let i = 0; i < choices.length; i++) {
+//     // Compare user input to choices in choice array
+//     for (let i = 0; i < choices.length; i++) {
 
-        if(choices[i].toUpperCase() === playerChoice.toUpperCase()) {
-            playerChoice = choices[i];
-            return playerChoice;
-        }
-    }
+//         if(choices[i].toUpperCase() === playerChoice.toUpperCase()) {
+//             playerChoice = choices[i];
+//             return playerChoice;
+//         }
+//     }
 
-}
+// }
 
 // Create playRound() function that takes two parameters
 // playerSelection and computerSelection
@@ -59,7 +59,7 @@ function playRound(playerSelection, computerSelection) {
     }
 
     // return result
-
+    console.log(result[0]);
     return result;
 }
 
@@ -67,34 +67,42 @@ function playRound(playerSelection, computerSelection) {
 // plays 5 rounds of a game and keeps score to record the winner of the 5 rounds
 // display the winner after the five rounds
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
 
-    // Create for loop to iterate 5 rounds of the game
-    // Add to the wins and losses for the player
-    // Handle ties by recalling the playRound function
+//     // Create for loop to iterate 5 rounds of the game
+//     // Add to the wins and losses for the player
+//     // Handle ties by recalling the playRound function
 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        let roundResult = playRound(playerSelection, computerSelection);
+//     for (let i = 0; i < 5; i++) {
+//         const playerSelection = getPlayerChoice();
+//         const computerSelection = getComputerChoice();
+//         let roundResult = playRound(playerSelection, computerSelection);
         
-        console.log(roundResult[0]);
+//         console.log(roundResult[0]);
         
-        if (roundResult[1] === 'Win') {
-            playerScore++
-        } else if (roundResult[1] === 'Loss') {
-            computerScore++
-        } else {
-            i--
-        }
-        console.log(`Player: ${playerScore}`);
-        console.log(`Computer: ${computerScore}`);
-    }
-    if(playerScore > computerScore) {
-        return `Congratulations! You beat the computer ${playerScore} to ${computerScore}`
-    } else {
-        return `Game Over!! You lost to the computer ${computerScore} to ${playerScore}`
-    }
-}
+//         if (roundResult[1] === 'Win') {
+//             playerScore++
+//         } else if (roundResult[1] === 'Loss') {
+//             computerScore++
+//         } else {
+//             i--
+//         }
+//         console.log(`Player: ${playerScore}`);
+//         console.log(`Computer: ${computerScore}`);
+//     }
+//     if(playerScore > computerScore) {
+//         return `Congratulations! You beat the computer ${playerScore} to ${computerScore}`
+//     } else {
+//         return `Game Over!! You lost to the computer ${computerScore} to ${playerScore}`
+//     }
+// }
+
+const btns = document.querySelectorAll('button');
+
+btns.forEach(btn => {
+    btn.addEventListener('click', e => {
+        playRound(btn.innerText, getComputerChoice());
+    });
+})
