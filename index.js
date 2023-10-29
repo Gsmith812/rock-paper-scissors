@@ -59,7 +59,6 @@ function playRound(playerSelection, computerSelection) {
     }
 
     // return result
-    console.log(result[0]);
     return result;
 }
 
@@ -101,8 +100,46 @@ function playRound(playerSelection, computerSelection) {
 
 const btns = document.querySelectorAll('button');
 
+const scoreDiv = document.querySelector('.score');
+const gameResult = document.querySelector('.gameResult');
+
+let playerScore = 0;
+let computerScore = 0;
+
+scoreDiv.innerText = `Player Score: ${playerScore} vs. Computer Score: ${computerScore}`;
+
 btns.forEach(btn => {
-    btn.addEventListener('click', e => {
-        playRound(btn.innerText, getComputerChoice());
+    btn.addEventListener('click', () => {
+        const roundResult = document.querySelector('.roundResult');
+        gameResult.innerText = '';
+
+        result = playRound(btn.innerText, getComputerChoice());
+        roundResult.innerText = result[0];
+        if(result[1] === 'Win') {
+            playerScore++;
+            scoreDiv.innerText = `Player Score: ${playerScore} vs. Computer Score: ${computerScore}`;
+        } else if (result[1] === 'Loss') {
+            computerScore++;
+            scoreDiv.innerText = `Player Score: ${playerScore} vs. Computer Score: ${computerScore}`;
+        }
+
+        // Logic for reaching a score of 5
+
+        if(playerScore === 5 && playerScore > computerScore) {
+            // reset scores
+            playerScore = 0;
+            computerScore = 0;
+            
+            gameResult.innerText = 'Congratulations! You beat the Computer!';
+            
+        } else if (computerScore === 5 && computerScore > playerScore) {
+            playerScore = 0;
+            computerScore = 0;
+            
+            gameResult.innerText = 'Game Over! You Lost!';
+        }
+
+        
     });
 })
+
