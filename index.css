@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: skyblue;
+    gap: 50px;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.playerChoice {
+    border: none;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    font-size: 30px;
+    font-weight: 800;
+    background-color: slategrey;
+    color: white;
+}
+
+.playerChoice:hover {
+    background-color: white;
+    color: slategrey;
+}
+
+.roundResult, .score, .gameResult {
+    color: white;
+    font-size: 40px;
+}
